@@ -1,0 +1,46 @@
+body {
+  padding-top: 5rem;
+  background: url(/img/bg.jpg) no-repeat fixed top center !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important; }
+
+.card {
+  min-height: 20px;
+  margin-bottom: 25px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  overflow: hidden;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+
+.card-footer {
+  background-color: transparent; }
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd; }
+
+.nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none; }
+
+.nav-tabs .nav-link:hover {
+  border-color: transparent;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.3); }
+
+.nav-tabs .nav-link.active {
+  color: #ebebeb;
+  background-color: rgba(21, 21, 21, 0.4);
+  border-color: transparent;
+  border-radius: 0; }
+
+/*# sourceMappingURL=style.css.map */
