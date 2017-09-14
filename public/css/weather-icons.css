@@ -1,10 +1,6 @@
 .icon-container {
-  width: 150px;
-  height: 150px;
-  float: left;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
+  width: 64px;
+  height: 64px;
   position: relative;
   overflow: hidden; }
   .icon-container .weather-type {

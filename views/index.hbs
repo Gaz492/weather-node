@@ -1,59 +1,35 @@
 {{#> layouts/default}}
     {{#*inline "content-block"}}
         <div class="container">
-            <!-- Content here -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="card-title">Llanrwst, Conwy <span class="float-right">Conwy, Wales</span> </h4>
-                        </div>
+            <div id="weather">
+                <div v-if="error"><div class="alert alert-danger" role="alert">Location ID error</div></div>
+                <div v-else="" id="display">
+                    <div id="top">
+                        <div class="location">\{{ location }}</div>
+                        <div class="time">\{{ displayDate }}</div>
+                        <div class="status">\{{ status }}</div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h5 class="text-center">Forecast</h5>
-                            <div class="icon sun-cloud mx-auto">
-                                <div class="cloud"></div>
-                                <div class="sun">
-                                    <div class="rays"></div>
-                                </div>
-                            </div>
-                            <p class="text-center">Mostly Cloudy</p>
-                        </div>
-                        <div class="col">
-                            <h5 class="text-center">Humidity</h5>
-                            <h2 class="text-center align-middle">87%</h2>
-                        </div>
-                        <div class="col">
-                            <h5 class="text-center">Barometer</h5>
-                            <div class="text-center">
-                                <div id="barometer"></div>
-                            </input>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer p-0 border-0">
-                <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#temprature" role="tab" aria-controls="home" aria-expanded="true">Temperature</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#graphs" role="tab" aria-controls="profile">Graphs</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="temprature" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="container">
 
-                        </div>
+                    <div id="left-information">
+                        <img :src="getThumbnail(status, 64)" :alt="status" class="thumbnail" />
+                        <div class="temperature">\{{ temperature }}</div>
+                        <div class="unit">&deg;C</div>
                     </div>
-                    <div class="tab-pane fade" id="graphs" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="container">
-                            ...
-                        </div>
+
+                    <div id="right-information">
+                        <span>Humidity: \{{ humidity }}%</span><br/>
+                        <span>Pressure: \{{ pressure }} hPa</span><br/>
+                        <span>Wind speed: \{{ wind }} km/h</span>
+                    </div>
+
+                    <div id="forecast">
+                        <ul>
+                            <li v-for="(f, i) in forecast" v-if="i < 8">
+                                <div>\{{ f.day }}</div>
+                                <img :src="getThumbnail(f.text, 48)" :alt="f.text" />
+                                <b>\{{ f.high }}°</b> \{{ f.low }}°
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -19,9 +19,9 @@
   box-shadow:
           -2.1875em 0.6875em 0 -0.6875em,
           2.0625em 0.9375em 0 -0.9375em,
-          0 0 0 0.375em #fff,
-          -2.1875em 0.6875em 0 -0.3125em #fff,
-          2.0625em 0.9375em 0 -0.5625em #fff;
+          //0 0 0 0.375em #fff,
+          //-2.1875em 0.6875em 0 -0.3125em #fff,
+          //2.0625em 0.9375em 0 -0.5625em #fff;
 }
 .cloud:after {
   content: '';
@@ -58,8 +58,9 @@
   margin: -1.25em;
   background: currentColor;
   border-radius: 50%;
-  box-shadow: 0 0 0 0.375em #fff;
+  box-shadow: 0 0 0 0.375em #fdda3f;
   animation: spin 12s infinite linear;
+  background-color: #fdda3f;
 }
 .rays {
   position: absolute;
@@ -69,9 +70,9 @@
   width: 0.375em;
   height: 1.125em;
   margin-left: -0.1875em;
-  background: #fff;
+  background: #fdda3f;
   border-radius: 0.25em;
-  box-shadow: 0 5.375em #fff;
+  box-shadow: 0 5.375em #fdda3f;
 }
 .rays:before,
 .rays:after {
@@ -84,9 +85,9 @@
   height: 1.125em;
   transform: rotate(60deg);
   transform-origin: 50% 3.25em;
-  background: #fff;
+  background: #fdda3f;
   border-radius: 0.25em;
-  box-shadow: 0 5.375em #fff;
+  box-shadow: 0 5.375em #fdda3f;
 }
 .rays:before {
   transform: rotate(120deg);
