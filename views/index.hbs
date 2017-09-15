@@ -43,12 +43,18 @@
                         <div class="col text-center">
                             <h5><strong>Temperature</strong></h5>
                             <span>Min: {{data.minTemp}}&deg;c</span><br>
-                            <span>Max: {{data.maxTemp}}&deg;c</span>
+                            <span>Max: {{data.maxTemp}}&deg;c</span><br><br>
+                            <h6><strong>Last 24 hours</strong></h6>
+                            <span>Min: {{data.minTemp24}}&deg;c</span><br>
+                            <span>Max: {{data.maxTemp24}}&deg;c</span>
                         </div>
                         <div class="col text-center">
                             <h5><strong>Humidity</strong></h5>
                             <span>Min: {{data.minHumid}}%</span><br>
-                            <span>Max: {{data.maxHumid}}%</span>
+                            <span>Max: {{data.maxHumid}}%</span><br><br>
+                            <h6 class="allign-bottom"><strong>Last 24 hours</strong></h6>
+                            <span>Min: {{data.minHumid24}}%</span><br>
+                            <span>Max: {{data.maxHumid24}}%</span>
                         </div>
                     </div>
                 </section>
