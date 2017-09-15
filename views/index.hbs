@@ -39,8 +39,18 @@
                     </div>
                 </section>
                 <section class="card">
-                    <h1><strong>Weather Stats</strong></h1>
-                    <h2>Min/Max Temperature and Humidity here</h2>
+                    <div class="row">
+                        <div class="col text-center">
+                            <h5><strong>Temperature</strong></h5>
+                            <span>Min: {{data.minTemp}}&deg;c</span><br>
+                            <span>Max: {{data.maxTemp}}&deg;c</span>
+                        </div>
+                        <div class="col text-center">
+                            <h5><strong>Humidity</strong></h5>
+                            <span>Min: {{data.minHumid}}%</span><br>
+                            <span>Max: {{data.maxHumid}}%</span>
+                        </div>
+                    </div>
                 </section>
                 <section class="card">
                     <h1><strong>Weather Graphs</strong></h1>
