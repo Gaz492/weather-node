@@ -1,38 +1,76 @@
 {{#> layouts/default}}
     {{#*inline "content-block"}}
         <div class="container">
-            <div id="weather">
-                <div v-if="error"><div class="alert alert-danger" role="alert">Location ID error</div></div>
-                <div v-else="" id="display">
-                    <div id="top">
-                        <div class="location">\{{ location }}</div>
-                        <div class="time">\{{ displayDate }}</div>
-                        <div class="status">\{{ status }}</div>
+            <main class="col">
+                <!--<input placeholder="Search, or say Google" x-webkit-speech class="mx-auto" autocomplete="off" />-->
+                <header></header>
+                <section class="card" id="weather-card">
+                    <div v-if="error">
+                        <div class="alert alert-danger" role="alert">Location ID error</div>
                     </div>
+                    <div v-else="" id="display">
+                        <div id="top">
+                            <div class="location">%( location %)</div>
+                            <div class="time">%( displayDate %)</div>
+                            <div class="status">%( getForecast(status, 64).text %)</div>
+                        </div>
 
-                    <div id="left-information">
-                        <img :src="getThumbnail(status, 64)" :alt="status" class="thumbnail" />
-                        <div class="temperature">\{{ temperature }}</div>
-                        <div class="unit">&deg;C</div>
-                    </div>
+                        <div id="left-information">
+                            <img :src="getForecast(status, 64).icon" :alt="status" class="thumbnail"/>
+                            <div class="temperature">%( temperature %)</div>
+                            <div class="unit">&deg;C</div>
+                        </div>
 
-                    <div id="right-information">
-                        <span>Humidity: \{{ humidity }}%</span><br/>
-                        <span>Pressure: \{{ pressure }} hPa</span><br/>
-                        <span>Wind speed: \{{ wind }} km/h</span>
-                    </div>
+                        <div id="right-information">
+                            <span>Humidity: %( humidity %) %</span><br/>
+                            <span>Pressure: %( pressure %) hPa</span><br/>
+                            <span>Wind speed: %( wind %) km/h</span>
+                        </div>
 
-                    <div id="forecast">
-                        <ul>
-                            <li v-for="(f, i) in forecast" v-if="i < 8">
-                                <div>\{{ f.day }}</div>
-                                <img :src="getThumbnail(f.text, 48)" :alt="f.text" />
-                                <b>\{{ f.high }}°</b> \{{ f.low }}°
-                            </li>
-                        </ul>
+                        <div id="forecast">
+                            <ul>
+                                <li v-for="(f, i) in forecast" v-if="i < 8">
+                                    <div>%( f.day %)</div>
+                                    <img :src="getThumbnail(f.text, 48)" :alt="f.text"/>
+                                    <b>%( f.high %)°</b> %( f.low %)°
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
+                <section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>
+                <!--<section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>
+                <section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>
+                <section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>
+                <section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>
+                <section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>
+                <section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>
+                <section class="card">
+                    <h1><strong>Weather Stats</strong></h1>
+                    <h2>Justin Bieber - Nicki Minaj - other crappy singers...</h2>
+                </section>-->
+            </main>
         </div>
     {{/inline}}
 {{/layouts/default}}

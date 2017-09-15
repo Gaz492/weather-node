@@ -8,8 +8,11 @@ const handlebars = require('express-handlebars');
 const sassMiddleware = require('node-sass-middleware');
 const winston = require('winston');
 
+const testing = require('./models/util');
+
 
 const index = require('./routes/index');
+const updateRoute = require('./routes/update');
 
 const app = express();
 
@@ -38,14 +41,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use(sassMiddleware({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public'),
+    src: path.join(__dirname, 'static'),
+    dest: path.join(__dirname, 'static'),
     indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: true,
+    prefix: "/static"
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'static')));
 
 app.use('/', index);
+app.use('/update', updateRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
