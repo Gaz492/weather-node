@@ -33,23 +33,31 @@ body {
   -moz-background-size: cover !important;
   -o-background-size: cover !important;
   background-size: cover !important;
-  overflow: auto;
+  overflow: hidden;
 }
 
 main {
-  display: block;
-  position: relative;
+  display: block !important;
+  position: relative !important;
   width: 45rem !important;
-  margin: 3vh auto;
-  padding: 11.5rem 0 0;
-  background: #d5d5d5;
-  border-radius: .25rem;
-  overflow: hidden;
-  overflow-y: auto;
+  margin: 3vh auto !important;
+  padding: 10.1rem 0 0 !important;
+  background: #d5d5d5 !important;
+  border-radius: .25rem !important;
+  overflow: hidden !important;
   //transform:scale(.75);
   //transform-origin:center 3rem;
   //transition:transform .3s;
-  height: 57rem;
+  height: 56rem !important;
+}
+
+.main-content{
+  height: 100%;
+  overflow: auto;
+}
+
+.card:first-of-type{
+  margin-top: 1rem;
 }
 
 header {
@@ -228,4 +236,8 @@ select {
   width: 73px;
   text-align: center;
   line-height: 1;
+}
+
+.mCSB_inside>.mCSB_container {
+   margin-right: 0 !important;
 }

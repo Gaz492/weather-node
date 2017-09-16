@@ -4,64 +4,70 @@
             <main class="col">
                 <!--<input placeholder="Search, or say Google" x-webkit-speech class="mx-auto" autocomplete="off" />-->
                 <header></header>
-                <section class="card" id="weather-card">
-                    <div v-if="error">
-                        <div class="alert alert-danger" role="alert">Location ID error</div>
-                    </div>
-                    <div v-else="" id="display">
-                        <div id="top">
-                            <!--<div class="location">%( location %)</div>-->
-                            <div class="location">%( displayDate %)</div>
-                            <div class="time">%( getForecast(status, 64).text %)</div>
+                <div class="main-content mCustomScrollbar" data-mcs-theme="dark">
+                    <section class="card" id="weather-card">
+                        <div v-if="error">
+                            <div class="alert alert-danger" role="alert">Location ID error</div>
                         </div>
+                        <div v-else="" id="display">
+                            <div id="top">
+                                <!--<div class="location">%( location %)</div>-->
+                                <div class="location">%( displayDate %)</div>
+                                <div class="time">%( getForecast(status, 64).text %)</div>
+                            </div>
 
-                        <div id="left-information">
-                            <img :src="getForecast(status, 64).icon" :alt="status" class="thumbnail"/>
-                            <div class="temperature">%( temperature %)</div>
-                            <div class="unit">&deg;C</div>
-                        </div>
+                            <div id="left-information">
+                                <img :src="getForecast(status, 64).icon" :alt="status" class="thumbnail"/>
+                                <div class="temperature">%( temperature %)</div>
+                                <div class="unit">&deg;C</div>
+                            </div>
 
-                        <div id="right-information">
-                            <span>Humidity: %( humidity %) %</span><br/>
-                            <span>Pressure: %( pressure %) hPa</span><br/>
-                            <span>Wind speed: %( wind %) km/h</span>
-                        </div>
+                            <div id="right-information">
+                                <span>Humidity: %( humidity %) %</span><br/>
+                                <span>Pressure: %( pressure %) hPa</span><br/>
+                                <span>Wind speed: %( wind %) km/h</span>
+                            </div>
 
-                        <div id="forecast">
-                            <ul>
-                                <li v-for="(f, i) in forecast" v-if="i < 8">
-                                    <div>%( f.day %)</div>
-                                    <img :src="getThumbnail(f.text, 48)" :alt="f.text"/>
-                                    <b>%( f.high %)°</b> %( f.low %)°
-                                </li>
-                            </ul>
+                            <div id="forecast">
+                                <ul>
+                                    <li v-for="(f, i) in forecast" v-if="i < 8">
+                                        <div>%( f.day %)</div>
+                                        <img :src="getThumbnail(f.text, 48)" :alt="f.text"/>
+                                        <b>%( f.high %)°</b> %( f.low %)°
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                <section class="card">
-                    <div class="row">
-                        <div class="col text-center">
-                            <h5><strong>Temperature</strong></h5>
-                            <span>Min: {{data.minTemp}}&deg;c</span><br>
-                            <span>Max: {{data.maxTemp}}&deg;c</span><br><br>
-                            <h6><strong>Last 24 hours</strong></h6>
-                            <span>Min: {{data.minTemp24}}&deg;c</span><br>
-                            <span>Max: {{data.maxTemp24}}&deg;c</span>
+                    </section>
+                    <section class="card">
+                        <div class="row">
+                            <div class="col text-center">
+                                <h5><strong>Temperature</strong></h5>
+                                <span>Min: {{data.minTemp}}&deg;c</span><br>
+                                <span>Max: {{data.maxTemp}}&deg;c</span><br><br>
+                                <h6><strong>Last 24 hours</strong></h6>
+                                <span>Min: {{data.minTemp24}}&deg;c</span><br>
+                                <span>Max: {{data.maxTemp24}}&deg;c</span>
+                            </div>
+                            <div class="col text-center">
+                                <h5><strong>Humidity</strong></h5>
+                                <span>Min: {{data.minHumid}}%</span><br>
+                                <span>Max: {{data.maxHumid}}%</span><br><br>
+                                <h6 class="allign-bottom"><strong>Last 24 hours</strong></h6>
+                                <span>Min: {{data.minHumid24}}%</span><br>
+                                <span>Max: {{data.maxHumid24}}%</span>
+                            </div>
                         </div>
-                        <div class="col text-center">
-                            <h5><strong>Humidity</strong></h5>
-                            <span>Min: {{data.minHumid}}%</span><br>
-                            <span>Max: {{data.maxHumid}}%</span><br><br>
-                            <h6 class="allign-bottom"><strong>Last 24 hours</strong></h6>
-                            <span>Min: {{data.minHumid24}}%</span><br>
-                            <span>Max: {{data.maxHumid24}}%</span>
-                        </div>
-                    </div>
-                </section>
-                <section class="card">
-                    <h1><strong>Weather Graphs</strong></h1>
-                    <h2>Historical weather data displayed in graphs here</h2>
-                </section>
+                    </section>
+                    <section class="card">
+                        <h1><strong>Weather Graphs</strong></h1>
+                        <h2>Historical weather data displayed in graphs here</h2>
+                    </section>
+                    <section class="card">
+                        <h1><strong>Testing scroll</strong></h1>
+                        <h2>Historical weather data displayed in graphs here</h2>
+                    </section>
+                </div>
             </main>
         </div>
     {{/inline}}
