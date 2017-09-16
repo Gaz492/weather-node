@@ -5,15 +5,20 @@ const models = require('./db');
 const WeatherTemp = models.weatherTemp;
 const WeatherOther = models.weatherOther;
 
-const last24hrs = {
-    where:{
-        date: {
-            $gt: models.sequelize.fn(
-                'DATE_SUB',
-                models.sequelize.literal('NOW()'),
-                models.sequelize.literal('INTERVAL 24 HOUR')
-            )
+const options = {
+    last24hrs: {
+        where: {
+            date: {
+                $gt: models.sequelize.fn(
+                    'DATE_SUB',
+                    models.sequelize.literal('NOW()'),
+                    models.sequelize.literal('INTERVAL 24 HOUR')
+                )
+            }
         }
+    },
+    orderDESC: {
+        order: [['date', 'DESC']]
     }
 };
 
@@ -30,10 +35,10 @@ function MinMax(callback) {
 }
 
 function MinMax24(callback) {
-    WeatherTemp.min('temp', last24hrs).then(tempMin => {
-        WeatherTemp.max('temp', last24hrs).then(tempMax => {
-            WeatherTemp.min('humid', last24hrs).then(humidMin => {
-                WeatherTemp.max('humid', last24hrs).then(humidMax => {
+    WeatherTemp.min('temp', options.last24hrs).then(tempMin => {
+        WeatherTemp.max('temp', options.last24hrs).then(tempMax => {
+            WeatherTemp.min('humid', options.last24hrs).then(humidMin => {
+                WeatherTemp.max('humid', options.last24hrs).then(humidMax => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
                 })
             })
@@ -41,37 +46,45 @@ function MinMax24(callback) {
     });
 }
 
+function LatestTempHumid(callback) {
+    WeatherTemp.findOne({
+        order: [['date', 'DESC']]
+    }).then((data) => {
+        callback(data);
+        return null;
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+function LatestPressureForecast(callback) {
+    WeatherOther.findOne({
+        order: [['date', 'DESC']]
+    }).then((data) => {
+        callback(data);
+        return null;
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+
 
 module.exports = {
-    getLatestTempHumid: function (callback){
-        WeatherTemp.findOne({
-            order:[['date', 'DESC']]
-        }).then((data) => {
-            callback(data);
-            return null;
-        }).catch((err) => {
-            console.log(err);
-            callback(err)
-        })
-    },
-    getLatestBaroForecast: function (callback){
-        WeatherOther.findOne({
-            order:[['date', 'DESC']]
-        }).then((data) => {
-            callback(data);
-            return null;
-        }).catch((err) => {
-            console.log(err);
-        })
-    },
-    getMinMax: function (callback) {
-        MinMax(function (data) {
-            callback(data);
-        });
-    },
-    getMinMax24: function (callback) {
-        MinMax24(function (data) {
-            callback(data);
+    getWeatherData: function (callback) {
+        LatestTempHumid(function (tempHumidData) {
+            LatestPressureForecast(function (pressureForecastData) {
+                MinMax(function (MinMaxData) {
+                    MinMax24(function (MinMax24Data) {
+                        callback({
+                            currentTemp: tempHumidData.dataValues.temp,
+                            currentHumidity: tempHumidData.dataValues.humid,
+                            currentPressure: pressureForecastData.dataValues.baro,
+                            currentForecast: pressureForecastData.dataValues.forecast,
+                            minMax: MinMaxData,
+                            minMax24: MinMax24Data
+                        })
+                    })
+                })
+            })
         });
     }
 };
