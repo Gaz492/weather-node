@@ -7,7 +7,8 @@ const router = express.Router();
 const config = require('../config');
 const models = require('../models/db');
 
-const WeatherOther = models.weatherTemp;
+const WeatherTemp = models.weatherTemp;
+const WeatherOther = models.weatherOther;
 
 /*function test(callback) {
     WeatherOther.findAll({
@@ -45,9 +46,19 @@ router.post('/', function (req, res, next) {
     if (typeof macAddress !== 'undefined') {
         if (macAddress === config.weatherApp.macAddress) {
             if (typeof barometer !== 'undefined') {
-                res.send("Barometer or forecast")
+                WeatherOther.create({
+                    baro: barometer,
+                    forecast: forecast
+                }).then(function (data) {
+                    res.send(data);
+                })
             } else if (typeof temperature !== 'undefined') {
-                res.send("temperature or humidity")
+                WeatherTemp.create({
+                    temp: temperature,
+                    humid: humidity
+                }).then(function (err, data) {
+                    res.send(data);
+                })
             }
             else {
                 res.header("Content-Type", "application/json");
