@@ -50,6 +50,7 @@ router.post('/', function (req, res, next) {
                     baro: barometer,
                     forecast: forecast
                 }).then(function (data) {
+                    console.log(data);
                     res.send(data);
                 })
             } else if (typeof temperature !== 'undefined') {
@@ -57,6 +58,7 @@ router.post('/', function (req, res, next) {
                     temp: temperature,
                     humid: humidity
                 }).then(function (err, data) {
+                    console.log(data);
                     res.send(data);
                 })
             }

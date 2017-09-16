@@ -11,9 +11,10 @@ const sequelize = new Sequelize(config.db.database, config.db.username, config.d
     host: config.db.hostname,
     port: config.db.port,
     dialect: config.db.dialect,
+    logging: false,
 
     pool: {
-        max: 5,
+        max: 10,
         min: 0,
         idle: 10000
     }
