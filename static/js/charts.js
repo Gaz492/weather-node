@@ -158,6 +158,7 @@ $(function () {
             marker: {
                 symbol: 'circle'
             },
+            fillOpacity: 0.3,
             data: chartData.weekHr.temp,
             zones: [{
                 value: 0,
@@ -241,6 +242,7 @@ $(function () {
             marker: {
                 symbol: 'circle'
             },
+            fillOpacity: 0.3,
             data: chartData.week.temp,
             zones: [{
                 value: 0,
@@ -324,6 +326,7 @@ $(function () {
             marker: {
                 symbol: 'circle'
             },
+            fillOpacity: 0.3,
             data: chartData.year.temp,
             zones: [{
                 value: 0,
