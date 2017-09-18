@@ -6,9 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const handlebars = require('express-handlebars');
 const sassMiddleware = require('node-sass-middleware');
-const winston = require('winston');
-
-const testing = require('./models/util');
 
 
 const index = require('./routes/index');
@@ -45,7 +42,8 @@ app.use(sassMiddleware({
     dest: path.join(__dirname, 'static'),
     indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: true,
-    prefix: "/static"
+    prefix: "/static",
+    outputStyle: 'compressed'
 }));
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
