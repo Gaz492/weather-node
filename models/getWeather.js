@@ -69,7 +69,7 @@ function LatestPressureForecast(callback) {
 }
 
 function temp24Hours(callback) {
-    models.sequelize.query("SELECT DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') AS time, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 24 HOUR) GROUP BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 24 HOUR ORDER BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 24 HOUR DESC", {model: WeatherTemp})
+    models.sequelize.query("SELECT DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') AS time, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 24 HOUR) GROUP BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 24 HOUR ORDER BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 24 HOUR ASC", {model: WeatherTemp})
         .then((data) => {
             callback(data)
         }).catch((err) => {
@@ -78,7 +78,7 @@ function temp24Hours(callback) {
 }
 
 function tempWeekHr(callback) {
-    models.sequelize.query("SELECT DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') AS time, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 1 HOUR ORDER BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 1 WEEK DESC", {model: WeatherTemp})
+    models.sequelize.query("SELECT DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') AS time, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 1 HOUR ORDER BY DATE_FORMAT(`date`,'%Y-%m-%d %H:00:00') - INTERVAL 1 WEEK ASC", {model: WeatherTemp})
         .then((data) => {
             callback(data)
         }).catch((err) => {
@@ -87,7 +87,7 @@ function tempWeekHr(callback) {
 }
 
 function tempWeek(callback) {
-    models.sequelize.query("SELECT DATE_FORMAT(`date`, '%Y-%m-%d') AS day, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY DAY(`date`) ORDER BY DATE_FORMAT(`date`, '%Y-%m-%d') DESC", {model: WeatherTemp})
+    models.sequelize.query("SELECT DATE_FORMAT(`date`, '%Y-%m-%d') AS day, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 7 DAY) GROUP BY DAY(`date`) ORDER BY DATE_FORMAT(`date`, '%Y-%m-%d') ASC", {model: WeatherTemp})
         .then((data) => {
             callback(data)
         }).catch((err) => {
@@ -96,7 +96,7 @@ function tempWeek(callback) {
 }
 
 function tempYear(callback) {
-    models.sequelize.query("SELECT DATE_FORMAT(`date`, '%Y-%m-%d') AS month, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 1 Year) GROUP BY MONTH(`date`) ORDER BY MONTH(`date`) DESC LIMIT 12", {model: WeatherTemp})
+    models.sequelize.query("SELECT DATE_FORMAT(`date`, '%Y-%m-%d') AS month, ROUND(AVG(temp),1) AS avgtemp, ROUND(AVG(humid),1) as avghumid FROM cust_weatherTemp WHERE date > DATE_SUB(NOW(), INTERVAL 1 Year) GROUP BY MONTH(`date`) ORDER BY MONTH(`date`) ASC LIMIT 12", {model: WeatherTemp})
         .then((data) => {
             callback(data)
         }).catch((err) => {
