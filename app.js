@@ -9,7 +9,7 @@ const sassMiddleware = require('node-sass-middleware');
 
 
 const index = require('./routes/index');
-const updateRoute = require('./routes/update');
+// const updateRoute = require('./routes/update');
 
 const app = express();
 
@@ -48,7 +48,7 @@ app.use(sassMiddleware({
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
 app.use('/', index);
-app.use('/update', updateRoute);
+// app.use('/update', updateRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

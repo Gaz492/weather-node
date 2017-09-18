@@ -13,6 +13,8 @@ const WeatherOther = models.weatherOther;
 /* GET home page. */
 router.post('/', function (req, res, next) {
 
+    console.log(req);
+
     let postData = req.body;
 
     let macAddress = postData.mac,
