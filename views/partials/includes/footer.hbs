@@ -9,95 +9,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-<script src="/static/js/vue.min.js"></script>
-<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="/static/js/vue.min.js"></script>
+<script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/static/js/moment.min.js"></script>
 <!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
 <script>
-    'use strict';
-    new Vue({
-        delimiters: ['%(', '%)'],
-        el: "#weather-card",
-        data: {
-            location: "",
-            status: {{data.currentForecast}},
-            time: moment().format("dddd MMM Do YYYY "),
-            temperature: "{{data.currentTemp}}",
-            humidity: "{{data.currentHumid}}",
-            wind: "{{data.wind}}",
-            pressure: "{{data.currentPressure}}",
-            forecast: {{{data.forecast}}},
-            error: {{data.error}}
-        },
-        computed: {
-            displayDate: function () {
-                // Slice time
-                return this.time.slice(0, 16);
-            }
-        },
-        methods: {
-            getForecast: function (status, size) {
-                switch (status) {
-                    case 0:
-                        return {
-                            icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/partly_cloudy.png",
-                            text: "Partly Cloudy"
-                        };
-                    case 1:
-                        return {icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/sunny.png", text: "Sunny"};
-                    case 2:
-                        return {icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/cloudy.png", text: "Cloudy"};
-                    case 3:
-                        return {icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/rain.png", text: "Rainy"};
-                    case 4:
-                        return {icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/snow.png", text: "Snowy"};
-                    default:
-                        return {
-                            icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/cloudy.png",
-                            text: "Error getting forecast"
-                        };
-                }
-            },
-            getThumbnail: function (status, size) {
-                switch (status.toLowerCase()) {
-                    case "hot":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/hot.png";
-                    case "sunny":
-                    case "mostly sunny":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/sunny.png";
-                    case "thunderstorms":
-                    case "severe thunderstorms":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/thunderstorms.png";
-                    case "scattered thunderstorms":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/rain_s_cloudy.png";
-                    case "partly cloudy":
-                    case "mostly cloudy":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/partly_cloudy.png";
-                    case "cloudy":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/cloudy.png";
-                    case "showers":
-                    case "scattered showers":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/rain_light.png";
-                    case "rain":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/rain.png";
-                    case "snow":
-                    case "heavy snow":
-                    case "snow flurries":
-                    case "blowing snow":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/snow.png";
-                    case "sleet":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/sleet.png";
-                    case "windy":
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/windy.png";
-                    default:
-                        return "https://ssl.gstatic.com/onebox/weather/" + size + "/cloudy.png";
-                }
-            }
-        }
-    });
-</script>
-<script>
+    let siteData = {
+        currentTemp: "{{data.currentTemp}}",
+        currentHumidity: "{{data.currentHumid}}",
+        windSpeed: "{{data.wind}}",
+        currentPressure: "{{data.currentPressure}}",
+        forecast: {{{data.forecast}}},
+        status: {{data.currentForecast}}
+    };
     let chartData = {
         last24Hours: {
             dates: [{{#each data.dayHour}}"{{this.dataValues.time}}",{{/each}}],
@@ -117,4 +42,5 @@
         }
     }
 </script>
+<script src="/static/js/data.min.js"></script>
 <script src="/static/js/charts.min.js"></script>
