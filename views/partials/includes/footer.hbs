@@ -108,11 +108,11 @@
             temp: [{{#each data.weekHr}}{{this.dataValues.avgtemp}},{{/each}}]
         },
         week: {
-            dates: [{{#each data.week}}"{{this.dataValues.time}}",{{/each}}],
+            dates: [{{#each data.week}}"{{this.dataValues.day}}",{{/each}}],
             temp: [{{#each data.week}}{{this.dataValues.avgtemp}},{{/each}}]
         },
         year: {
-            dates: [{{#each data.year}}"{{this.dataValues.time}}",{{/each}}],
+            dates: [{{#each data.year}}"{{this.dataValues.month}}",{{/each}}],
             temp: [{{#each data.year}}{{this.dataValues.avgtemp}},{{/each}}]
         }
     }
