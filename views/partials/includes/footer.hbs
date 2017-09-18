@@ -11,7 +11,9 @@
         crossorigin="anonymous"></script>
 <script src="/static/js/vue.min.js"></script>
 <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="/static/js/moment.min.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script>
     'use strict';
     new Vue({
@@ -20,7 +22,7 @@
         data: {
             location: "",
             status: {{data.currentForecast}},
-            time: Date(),
+            time: moment().format("dddd MMM Do YYYY "),
             temperature: "{{data.currentTemp}}",
             humidity: "{{data.currentHumid}}",
             wind: "{{data.wind}}",
@@ -51,7 +53,10 @@
                     case 4:
                         return {icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/snow.png", text: "Snowy"};
                     default:
-                        return {icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/cloudy.png", text: "Error getting forecast"};
+                        return {
+                            icon: "https://ssl.gstatic.com/onebox/weather/" + size + "/cloudy.png",
+                            text: "Error getting forecast"
+                        };
                 }
             },
             getThumbnail: function (status, size) {
@@ -92,3 +97,24 @@
         }
     });
 </script>
+<script>
+    let chartData = {
+        last24Hours: {
+            dates: [{{#each data.dayHour}}"{{this.dataValues.time}}",{{/each}}],
+            temp: [{{#each data.dayHour}}{{this.dataValues.avgtemp}},{{/each}}]
+        },
+        weekHr: {
+            dates: [{{#each data.weekHr}}"{{this.dataValues.time}}",{{/each}}],
+            temp: [{{#each data.weekHr}}{{this.dataValues.avgtemp}},{{/each}}]
+        },
+        week: {
+            dates: [{{#each data.week}}"{{this.dataValues.time}}",{{/each}}],
+            temp: [{{#each data.week}}{{this.dataValues.avgtemp}},{{/each}}]
+        },
+        year: {
+            dates: [{{#each data.year}}"{{this.dataValues.time}}",{{/each}}],
+            temp: [{{#each data.year}}{{this.dataValues.avgtemp}},{{/each}}]
+        }
+    }
+</script>
+<script src="/static/js/charts.js"></script>
