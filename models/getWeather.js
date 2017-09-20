@@ -24,10 +24,10 @@ const options = {
 };
 
 function minMax(callback) {
-    WeatherTemp.min('temp').then(tempMin => {
-        WeatherTemp.max('temp').then(tempMax => {
-            WeatherTemp.min('humid').then(humidMin => {
-                WeatherTemp.max('humid').then(humidMax => {
+    WeatherTemp.min('temp').then((tempMin) => {
+        WeatherTemp.max('temp').then((tempMax) => {
+            WeatherTemp.min('humid').then((humidMin) => {
+                WeatherTemp.max('humid').then((humidMax) => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
                 });
             });
@@ -36,10 +36,10 @@ function minMax(callback) {
 }
 
 function minMax24(callback) {
-    WeatherTemp.min('temp', options.last24hrs).then(tempMin => {
-        WeatherTemp.max('temp', options.last24hrs).then(tempMax => {
-            WeatherTemp.min('humid', options.last24hrs).then(humidMin => {
-                WeatherTemp.max('humid', options.last24hrs).then(humidMax => {
+    WeatherTemp.min('temp', options.last24hrs).then((tempMin) => {
+        WeatherTemp.max('temp', options.last24hrs).then((tempMax) => {
+            WeatherTemp.min('humid', options.last24hrs).then((humidMin) => {
+                WeatherTemp.max('humid', options.last24hrs).then((humidMax) => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
                 });
             });
