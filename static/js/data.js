@@ -2,7 +2,7 @@
  * Created by Gareth on 18/09/2017.
  */
 'use strict';
-new Vue({
+let displayContent = new Vue({
     delimiters: ['%(', '%)'],
     el: "#weather-card",
     data: {
@@ -79,3 +79,4 @@ new Vue({
         }
     }
 });
+displayContent();
