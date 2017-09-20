@@ -23,31 +23,31 @@ const options = {
     }
 };
 
-function MinMax(callback) {
+function minMax(callback) {
     WeatherTemp.min('temp').then(tempMin => {
         WeatherTemp.max('temp').then(tempMax => {
             WeatherTemp.min('humid').then(humidMin => {
                 WeatherTemp.max('humid').then(humidMax => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
-                })
-            })
-        })
+                });
+            });
+        });
     });
 }
 
-function MinMax24(callback) {
+function minMax24(callback) {
     WeatherTemp.min('temp', options.last24hrs).then(tempMin => {
         WeatherTemp.max('temp', options.last24hrs).then(tempMax => {
             WeatherTemp.min('humid', options.last24hrs).then(humidMin => {
                 WeatherTemp.max('humid', options.last24hrs).then(humidMax => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
-                })
-            })
-        })
+                });
+            });
+        });
     });
 }
 
-function LatestTempHumid(callback) {
+function latestTempHumid(callback) {
     WeatherTemp.findOne({
         order: [['date', 'DESC']]
     }).then((data) => {
@@ -55,9 +55,9 @@ function LatestTempHumid(callback) {
         return null;
     }).catch((err) => {
         console.log(err);
-    })
+    });
 }
-function LatestPressureForecast(callback) {
+function latestPressureForecast(callback) {
     WeatherOther.findOne({
         order: [['date', 'DESC']]
     }).then((data) => {
@@ -65,7 +65,7 @@ function LatestPressureForecast(callback) {
         return null;
     }).catch((err) => {
         console.log(err);
-    })
+    });
 }
 
 function temp24Hours(callback) {
@@ -74,7 +74,7 @@ function temp24Hours(callback) {
             callback(data)
         }).catch((err) => {
         console.log(err)
-    })
+    });
 }
 
 function tempWeekHr(callback) {
@@ -83,7 +83,7 @@ function tempWeekHr(callback) {
             callback(data)
         }).catch((err) => {
         console.log(err)
-    })
+    });
 }
 
 function tempWeek(callback) {
@@ -92,7 +92,7 @@ function tempWeek(callback) {
             callback(data)
         }).catch((err) => {
         console.log(err)
-    })
+    });
 }
 
 function tempYear(callback) {
@@ -101,16 +101,16 @@ function tempYear(callback) {
             callback(data)
         }).catch((err) => {
         console.log(err)
-    })
+    });
 }
 
 
 module.exports = {
     getWeatherData: function (callback) {
-        LatestTempHumid(function (tempHumidData) {
-            LatestPressureForecast(function (pressureForecastData) {
-                MinMax(function (MinMaxData) {
-                    MinMax24(function (MinMax24Data) {
+        latestTempHumid(function (tempHumidData) {
+            latestPressureForecast(function (pressureForecastData) {
+                minMax(function (MinMaxData) {
+                    minMax24(function (MinMax24Data) {
                         callback({
                             currentTemp: tempHumidData.dataValues.temp,
                             currentHumidity: tempHumidData.dataValues.humid,
@@ -118,10 +118,10 @@ module.exports = {
                             currentForecast: pressureForecastData.dataValues.forecast,
                             minMax: MinMaxData,
                             minMax24: MinMax24Data
-                        })
-                    })
-                })
-            })
+                        });
+                    });
+                });
+            });
         });
     },
 
@@ -135,10 +135,10 @@ module.exports = {
                             temp7DayHr: temp7DayHr,
                             temp7Day: temp7Day,
                             tempYear: tempYr
-                        })
-                    })
-                })
-            })
-        })
+                        });
+                    });
+                });
+            });
+        });
     }
 };
