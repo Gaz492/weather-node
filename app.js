@@ -4,8 +4,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const handlebars = require('express-handlebars');
 const sassMiddleware = require('node-sass-middleware');
+const ejs = require('ejs');
 
 
 const index = require('./routes/index');
@@ -14,24 +14,11 @@ const index = require('./routes/index');
 const app = express();
 
 // view engine setup
-app.engine('.hbs', handlebars({
-    helpers: {
-        ifCond: function (conditional, options) {
-            if (options.hash.value === conditional) {
-                return options.fn(this)
-            } else {
-                return options.inverse(this);
-            }
-        }
-    },
-    extname: 'hbs',
-    partialsDir: [path.join(__dirname, '/views/partials')]
-}));
-app.set('views', path.join(__dirname, '/views'));
-app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
