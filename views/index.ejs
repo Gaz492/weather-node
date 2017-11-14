@@ -37,7 +37,7 @@
                             <li v-for="(f, i) in forecast" v-if="i < 8">
                                 <div>%( f.day %)</div>
                                 <img :src="getThumbnail(f.text, 48)" :alt="f.text"/>
-                                <b>%( f.high %)°</b> %( f.low %)°
+                                <b>%( f.high %)°</b> <span>%( f.low %)°</span>
                             </li>
                         </ul>
                     </div>
@@ -79,6 +79,5 @@
 </div>
 <!--Footer Block-->
 <% include partials/includes/footer.ejs %>
-<!--<script src="//192.168.1.237:{{{dev}}}/browser-refresh.js"></script>-->
 </body>
 </html>
