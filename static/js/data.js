@@ -9,10 +9,6 @@ let displayContent = new Vue({
         location: "",
         status: siteData.status,
         time: moment().format("dddd MMM Do YYYY "),
-        temperature: siteData.currentTemp,
-        humidity: siteData.currentHumidity,
-        wind: siteData.windSpeed,
-        pressure: siteData.currentPressure,
         forecast: siteData.forecast,
         error: false
     },
@@ -79,4 +75,3 @@ let displayContent = new Vue({
         }
     }
 });
-displayContent();

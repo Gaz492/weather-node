@@ -4,7 +4,7 @@
             <main class="col">
                 <!--<input placeholder="Search, or say Google" x-webkit-speech class="mx-auto" autocomplete="off" />-->
                 <header></header>
-                <div class="main-content mCustomScrollbar" data-mcs-theme="dark">
+                <div class="main-content">
                     <section class="card" id="weather-card">
                         <div v-if="error">
                             <div class="alert alert-danger" role="alert">Location ID error</div>
@@ -18,14 +18,14 @@
 
                             <div id="left-information">
                                 <img :src="getForecast(status, 64).icon" :alt="status" class="thumbnail"/>
-                                <div class="temperature">%( temperature %)</div>
+                                <div class="temperature">{{data.currentTemp}}</div>
                                 <div class="unit">&deg;C</div>
                             </div>
 
                             <div id="right-information">
-                                <span>Humidity: %( humidity %) %</span><br/>
-                                <span>Pressure: %( pressure %) hPa</span><br/>
-                                <span>Wind speed: %( wind %) km/h</span>
+                                <span>Humidity: {{data.currentHumid}} %</span><br/>
+                                <span>Pressure: {{data.currentPressure}} hPa</span><br/>
+                                <span>Wind speed: {{data.wind}} km/h</span>
                             </div>
 
                             <div id="forecast">
@@ -67,8 +67,8 @@
                         <div id="year" style="width: 100%; height: 200px; margin: 0 auto"></div>
                     </section>
                     <!--<section class="card">-->
-                        <!--<h1><strong>Testing scroll</strong></h1>-->
-                        <!--<h2>Historical weather data displayed in graphs here</h2>-->
+                    <!--<h1><strong>Testing scroll</strong></h1>-->
+                    <!--<h2>Historical weather data displayed in graphs here</h2>-->
                     <!--</section>-->
                 </div>
             </main>

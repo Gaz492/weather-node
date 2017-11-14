@@ -29,9 +29,17 @@ function minMax(callback) {
             WeatherTemp.min('humid').then((humidMin) => {
                 WeatherTemp.max('humid').then((humidMax) => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
+                }).catch((err) => {
+                    Console.log(err)
                 });
+            }).catch((err) => {
+                Console.log(err)
             });
+        }).catch((err) => {
+            Console.log(err)
         });
+    }).catch((err) => {
+        Console.log(err)
     });
 }
 
@@ -41,9 +49,17 @@ function minMax24(callback) {
             WeatherTemp.min('humid', options.last24hrs).then((humidMin) => {
                 WeatherTemp.max('humid', options.last24hrs).then((humidMax) => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
+                }).catch((err) => {
+                    Console.log(err)
                 });
+            }).catch((err) => {
+                Console.log(err)
             });
+        }).catch((err) => {
+            Console.log(err)
         });
+    }).catch((err) => {
+        Console.log(err)
     });
 }
 
