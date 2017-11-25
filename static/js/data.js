@@ -11,12 +11,6 @@ let displayContent = new Vue({
         forecast: siteData.forecast,
         error: false
     },
-    computed: {
-        displayDate: function () {
-            // Slice time
-            return this.time.slice(0, 16);
-        }
-    },
     methods: {
         getForecast: function (status, size) {
             switch (status) {
