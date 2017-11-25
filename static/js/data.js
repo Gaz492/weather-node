@@ -8,7 +8,6 @@ let displayContent = new Vue({
     data: {
         location: "",
         status: siteData.status,
-        time: moment().format("dddd MMM Do YYYY "),
         forecast: siteData.forecast,
         error: false
     },
