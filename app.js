@@ -18,21 +18,25 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(function (req, res, next) {
+    res.set('cache-control', 'public, max-age=6400');
+    next()
+});
 
 app.use(sassMiddleware({
-    src: path.join(__dirname, 'static'),
-    dest: path.join(__dirname, 'static'),
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
     indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: true,
-    prefix: "/static",
+    prefix: "/public",
     outputStyle: 'compressed'
 }));
-app.use('/static', express.static(path.join(__dirname, 'static')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 // app.use('/update', updateRoute);

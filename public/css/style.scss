@@ -11,7 +11,7 @@ body {
   font-size: 16px;
   font-family: arial, sans-serif;
   color: #878787;
-  background: url('/static/img/bg.jpg') no-repeat fixed top center !important;
+  background: url('/public/img/bg.jpg') no-repeat fixed top center !important;
   -webkit-background-size: cover !important;
   -moz-background-size: cover !important;
   -o-background-size: cover !important;
@@ -51,7 +51,7 @@ header {
   right: 0;
   height: 10rem;
   transition: transform .5s, opacity .3s;
-  background: url('/static/img/header.png') center center;
+  background: url('/public/img/header.png') center center;
   background-size: cover;
 }
 
@@ -225,6 +225,6 @@ select {
    margin-right: 0 !important;
 }
 
-.mCS_img_loaded{
-  padding: 3px;
+.imgSize{
+  margin: 3px;
 }

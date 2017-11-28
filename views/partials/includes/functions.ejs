@@ -1,0 +1,58 @@
+<%
+getCurrentForecast = function (status) {
+    status = parseInt(status)
+    switch (status) {
+        case 0:
+            return {icon: "/public/img/weather/256/partly_cloudy.png", text: "Partly Cloudy"};
+        case 1:
+            return {icon: "/public/img/weather/256/sunny.png", text: "Sunny"};
+        case 2:
+            return {icon: "/public/img/weather/256/cloudy.png", text: "Cloudy"};
+        case 3:
+            return {icon: "/public/img/weather/256/rain.png", text: "Rainy"};
+        case 4:
+            return {icon: "/public/img/weather/256/snow.png", text: "Snowy"};
+        default:
+            return {
+                icon: "/public/img/weather/256/cloudy.png",
+                text: "Error getting forecast"
+            };
+    }
+}
+
+getForecast = function (status) {
+    switch (status.toLowerCase()) {
+        case "hot":
+            return "/public/img/weather/256/hot.png";
+        case "sunny":
+        case "mostly sunny":
+            return "/public/img/weather/256/sunny.png";
+        case "thunderstorms":
+        case "severe thunderstorms":
+            return "/public/img/weather/256/thunderstorms.png";
+        case "scattered thunderstorms":
+            return "/public/img/weather/256/rain_s_cloudy.png";
+        case "partly cloudy":
+        case "mostly cloudy":
+            return "/public/img/weather/256/partly_cloudy.png";
+        case "cloudy":
+            return "/public/img/weather/256/cloudy.png";
+        case "showers":
+        case "scattered showers":
+            return "/public/img/weather/256/rain_light.png";
+        case "rain":
+            return "/public/img/weather/256/rain.png";
+        case "snow":
+        case "heavy snow":
+        case "snow flurries":
+        case "blowing snow":
+            return "/public/img/weather/256/snow.png";
+        case "sleet":
+            return "/public/img/weather/256/sleet.png";
+        case "windy":
+            return "/public/img/weather/256/windy.png";
+        default:
+            return "/public/img/weather/256/cloudy.png";
+    }
+}
+%>

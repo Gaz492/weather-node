@@ -10,10 +10,8 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="/static/js/vue.min.js"></script>
-<script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/static/js/moment.min.js"></script>
-<!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+<script src="/public/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="/public/js/moment.min.js"></script>
 <script>
     (function ($) {
         $(window).on("load", function () {
@@ -23,14 +21,6 @@
         });
     })(jQuery);
 
-    let siteData = {
-        currentTemp: <%= data.currentTemp %>,
-        currentHumidity: <%= data.currentHumid %>,
-        windSpeed: <%= data.wind %>,
-        currentPressure: <%= data.currentPressure %>,
-        forecast: <%- data.forecast %>,
-        status: <%= data.currentForecast %>
-    }
     let chartData = {
         last24Hours: {
             dates: [<% for(let i=0; i < data.dayHour.length; i++){ %>"<%= data.dayHour[i].dataValues.time %>",<% } %>],
@@ -50,5 +40,4 @@
         }
     }
 </script>
-<script src="/static/js/data.min.js"></script>
-<script src="/static/js/charts.min.js"></script>
+<script src="/public/js/charts.min.js"></script>
