@@ -9,6 +9,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"
+        integrity="sha256-WPeFPWD3PZQUDrpFnDM1N2KadNVwCfNS4cCZ78b76T8=" crossorigin="anonymous"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="/public/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/public/js/moment.min.js"></script>
@@ -23,20 +25,20 @@
 
     let chartData = {
         last24Hours: {
-            dates: [<% for(let i=0; i < data.dayHour.length; i++){ %>"<%= data.dayHour[i].dataValues.time %>",<% } %>],
-            temp: [<% for(let i=0; i < data.dayHour.length; i++){ %><%= data.dayHour[i].dataValues.avgtemp %>,<% } %>]
+            dates: [<% for(let i = 0; i < data.dayHour.length; i++){ %>"<%= data.dayHour[i].dataValues.time %>",<% } %>],
+            temp: [<% for(let i = 0; i < data.dayHour.length; i++){ %><%= data.dayHour[i].dataValues.avgtemp %>,<% } %>]
         },
         weekHr: {
-            dates: [<% for(let i=0; i < data.weekHr.length; i++){ %>"<%= data.weekHr[i].dataValues.time %>",<% } %>],
-            temp: [<% for(let i=0; i < data.weekHr.length; i++){ %><%= data.weekHr[i].dataValues.avgtemp %>,<% } %>]
+            dates: [<% for(let i = 0; i < data.weekHr.length; i++){ %>"<%= data.weekHr[i].dataValues.time %>",<% } %>],
+            temp: [<% for(let i = 0; i < data.weekHr.length; i++){ %><%= data.weekHr[i].dataValues.avgtemp %>,<% } %>]
         },
         week: {
-            dates: [<% for(let i=0; i < data.week.length; i++){ %>"<%= data.week[i].dataValues.day %>",<% } %>],
-            temp: [<% for(let i=0; i < data.week.length; i++){ %><%= data.week[i].dataValues.avgtemp %>,<% } %>]
+            dates: [<% for(let i = 0; i < data.week.length; i++){ %>"<%= data.week[i].dataValues.day %>",<% } %>],
+            temp: [<% for(let i = 0; i < data.week.length; i++){ %><%= data.week[i].dataValues.avgtemp %>,<% } %>]
         },
         year: {
-            dates: [<% for(let i=0; i < data.year.length; i++){ %>"<%= data.year[i].dataValues.month %>",<% } %>],
-            temp: [<% for(let i=0; i < data.year.length; i++){ %><%= data.year[i].dataValues.avgtemp %>,<% } %>]
+            dates: [<% for(let i = 0; i < data.year.length; i++){ %>"<%= data.year[i].dataValues.month %>",<% } %>],
+            temp: [<% for(let i = 0; i < data.year.length; i++){ %><%= data.year[i].dataValues.avgtemp %>,<% } %>]
         }
     }
 </script>
