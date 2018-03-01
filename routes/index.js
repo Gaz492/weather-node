@@ -10,36 +10,34 @@ const util = require('../models/util');
 router.get('/', function (req, res, next) {
     util.getForecast(function (response) {
         let yahooChannel = response.query.results.channel;
-        getWeather.getWeatherData(function (weatherData) {
-            getWeather.getGraphData(function (graphData) {
-                res.render('index', {
-                    data: {
-                        error: false,
-                        currentTemp: weatherData.currentTemp,
-                        currentHumid: weatherData.currentHumidity,
-                        currentForecast: weatherData.currentForecast,
-                        currentPressure: weatherData.currentPressure,
-                        forecast: yahooChannel.item.forecast,
-                        wind: yahooChannel.wind.speed,
-                        minTemp: weatherData.minMax.tempMin,
-                        maxTemp: weatherData.minMax.tempMax,
-                        minHumid: weatherData.minMax.humidMin,
-                        maxHumid: weatherData.minMax.humidMax,
-                        minTemp24: weatherData.minMax24.tempMin,
-                        maxTemp24: weatherData.minMax24.tempMax,
-                        minHumid24: weatherData.minMax24.humidMin,
-                        maxHumid24: weatherData.minMax24.humidMax,
-                        // Graphs
-                        dayHour: graphData.temp24hr,
-                        weekHr: graphData.temp7DayHr,
-                        week: graphData.temp7Day,
-                        year: graphData.tempYear,
-                    },
-                    title: 'Home Weather',
-                    time: moment().format("dddd MMM Do YYYY ")
-                });
-            })
-        })
+        getWeather.getWeatherData(function(weatherData){
+            res.render('index', {
+                data: {
+                    error: false,
+                    currentTemp: weatherData.tempHumidData.dataValues.temp,
+                    currentHumid: weatherData.tempHumidData.dataValues.humid,
+                    currentForecast: weatherData.pressureForecastData.dataValues.forecast,
+                    currentPressure: weatherData.pressureForecastData.dataValues.baro,
+                    forecast: yahooChannel.item.forecast,
+                    wind: yahooChannel.wind.speed,
+                    minTemp: weatherData.minMaxData.tempMin,
+                    maxTemp: weatherData.minMaxData.tempMax,
+                    minHumid: weatherData.minMaxData.humidMin,
+                    maxHumid: weatherData.minMaxData.humidMax,
+                    minTemp24: weatherData.minMax24Data.tempMin,
+                    maxTemp24: weatherData.minMax24Data.tempMax,
+                    minHumid24: weatherData.minMax24Data.humidMin,
+                    maxHumid24: weatherData.minMax24Data.humidMax,
+                    // Graphs
+                    dayHour: weatherData.temp24hr,
+                    weekHr: weatherData.temp7DayHr,
+                    week: weatherData.temp7Day,
+                    year: weatherData.tempYr,
+                },
+                title: 'Home Weather',
+                time: moment().format("dddd MMM Do YYYY ")
+            });
+        });
     });
 });
 

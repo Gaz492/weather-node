@@ -2,6 +2,7 @@
  * Created by Gareth on 15/09/2017.
  */
 const sequelize = require('sequelize');
+const async = require('async');
 const models = require('./db');
 const WeatherTemp = models.weatherTemp;
 const WeatherOther = models.weatherOther;
@@ -30,16 +31,16 @@ function minMax(callback) {
                 WeatherTemp.max('humid').then((humidMax) => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
                 }).catch((err) => {
-                    Console.log(err)
+                    console.log(err)
                 });
             }).catch((err) => {
-                Console.log(err)
+                console.log(err)
             });
         }).catch((err) => {
-            Console.log(err)
+            console.log(err)
         });
     }).catch((err) => {
-        Console.log(err)
+        console.log(err)
     });
 }
 
@@ -50,16 +51,16 @@ function minMax24(callback) {
                 WeatherTemp.max('humid', options.last24hrs).then((humidMax) => {
                     callback({tempMin: tempMin, tempMax: tempMax, humidMin: humidMin, humidMax: humidMax});
                 }).catch((err) => {
-                    Console.log(err)
+                    console.log(err)
                 });
             }).catch((err) => {
-                Console.log(err)
+                console.log(err)
             });
         }).catch((err) => {
-            Console.log(err)
+            console.log(err)
         });
     }).catch((err) => {
-        Console.log(err)
+        console.log(err)
     });
 }
 
@@ -120,41 +121,60 @@ function tempYear(callback) {
     });
 }
 
+function asyncCall(callback){
+    async.parallel(
+        {
+            tempHumidData: function(cb){
+                latestTempHumid(function(data){
+                    cb(null, data)
+                })
+            },
+            pressureForecastData: function(cb){
+                latestPressureForecast(function(data){
+                    cb(null, data)
+                })
+            },
+            minMaxData: function(cb){
+                minMax(function(data){
+                    cb(null, data)
+                })
+            },
+            minMax24Data: function(cb){
+                minMax24(function(data){
+                    cb(null, data)
+                })
+            },
+            temp24hr: function(cb){
+                temp24Hours(function(data){
+                    cb(null, data)
+                })
+            },
+            temp7DayHr: function(cb){
+                tempWeekHr(function(data){
+                    cb(null, data)
+                })
+            },
+            temp7Day: function(cb){
+                tempWeek(function(data){
+                    cb(null, data)
+                })
+            },
+            tempYr: function(cb){
+                tempYear(function(data){
+                    cb(null, data)
+                })
+            },
+        },
+        function(err, results){
+            callback(results)
+        }
+    );
+}
 
 module.exports = {
-    getWeatherData: function (callback) {
-        latestTempHumid(function (tempHumidData) {
-            latestPressureForecast(function (pressureForecastData) {
-                minMax(function (MinMaxData) {
-                    minMax24(function (MinMax24Data) {
-                        callback({
-                            currentTemp: tempHumidData.dataValues.temp,
-                            currentHumidity: tempHumidData.dataValues.humid,
-                            currentPressure: pressureForecastData.dataValues.baro,
-                            currentForecast: pressureForecastData.dataValues.forecast,
-                            minMax: MinMaxData,
-                            minMax24: MinMax24Data
-                        });
-                    });
-                });
-            });
-        });
-    },
-
-    getGraphData: function (callback) {
-        temp24Hours(function (temp24hr) {
-            tempWeekHr(function (temp7DayHr) {
-                tempWeek(function (temp7Day) {
-                    tempYear(function (tempYr) {
-                        callback({
-                            temp24hr: temp24hr,
-                            temp7DayHr: temp7DayHr,
-                            temp7Day: temp7Day,
-                            tempYear: tempYr
-                        });
-                    });
-                });
-            });
-        });
+    getWeatherData: function(callback){
+        asyncCall(function(cb){
+            callback(cb)
+        })
     }
-};
+}
