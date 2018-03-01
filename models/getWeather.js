@@ -121,60 +121,54 @@ function tempYear(callback) {
     });
 }
 
-function asyncCall(callback){
-    async.parallel(
-        {
-            tempHumidData: function(cb){
-                latestTempHumid(function(data){
-                    cb(null, data)
-                })
-            },
-            pressureForecastData: function(cb){
-                latestPressureForecast(function(data){
-                    cb(null, data)
-                })
-            },
-            minMaxData: function(cb){
-                minMax(function(data){
-                    cb(null, data)
-                })
-            },
-            minMax24Data: function(cb){
-                minMax24(function(data){
-                    cb(null, data)
-                })
-            },
-            temp24hr: function(cb){
-                temp24Hours(function(data){
-                    cb(null, data)
-                })
-            },
-            temp7DayHr: function(cb){
-                tempWeekHr(function(data){
-                    cb(null, data)
-                })
-            },
-            temp7Day: function(cb){
-                tempWeek(function(data){
-                    cb(null, data)
-                })
-            },
-            tempYr: function(cb){
-                tempYear(function(data){
-                    cb(null, data)
-                })
-            },
-        },
-        function(err, results){
-            callback(results)
-        }
-    );
-}
-
 module.exports = {
     getWeatherData: function(callback){
-        asyncCall(function(cb){
-            callback(cb)
-        })
+        async.parallel(
+            {
+                tempHumidData: function(cb){
+                    latestTempHumid(function(data){
+                        cb(null, data)
+                    })
+                },
+                pressureForecastData: function(cb){
+                    latestPressureForecast(function(data){
+                        cb(null, data)
+                    })
+                },
+                minMaxData: function(cb){
+                    minMax(function(data){
+                        cb(null, data)
+                    })
+                },
+                minMax24Data: function(cb){
+                    minMax24(function(data){
+                        cb(null, data)
+                    })
+                },
+                temp24hr: function(cb){
+                    temp24Hours(function(data){
+                        cb(null, data)
+                    })
+                },
+                temp7DayHr: function(cb){
+                    tempWeekHr(function(data){
+                        cb(null, data)
+                    })
+                },
+                temp7Day: function(cb){
+                    tempWeek(function(data){
+                        cb(null, data)
+                    })
+                },
+                tempYr: function(cb){
+                    tempYear(function(data){
+                        cb(null, data)
+                    })
+                },
+            },
+            function(err, results){
+                callback(results)
+            }
+        );
     }
-}
+};
