@@ -23,10 +23,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(function (req, res, next) {
-    res.set('cache-control', 'public, max-age=6400');
-    next()
-});
 
 app.use(sassMiddleware({
     src: path.join(__dirname, 'public'),
