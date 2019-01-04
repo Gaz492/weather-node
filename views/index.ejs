@@ -26,16 +26,16 @@
                     <div id="right-information">
                         <span>Humidity: <%= data.currentHumid %> %</span><br/>
                         <span>Pressure: <%= data.currentPressure %> hPa</span><br/>
-                        <span>Wind speed: <%= data.wind %> km/h</span>
+                        <span>Wind speed: <%= data.wind %> mph</span>
                     </div>
 
                     <div id="forecast">
                         <ul>
                             <% for(let i = 0; i < 8; i++){ %>
                             <li>
-                                <div><%= data.forecast[i].day %></div>
-                                <img class="imgSize" src="<%= getForecast(data.forecast[i].text)%>" alt="<%= data.forecast[i].text %>" width="48">
-                                <b><%= data.forecast[i].high %>°</b> <span><%= data.forecast[i].low %>°</span>
+                                <div><%= getDay(data.forecast.data[i].time) %></div>
+                                <img src="<%= getForecast(data.forecast.data[i].icon).icon %>" alt="<%= data.forecast.data[i].summary %>" width="64">
+                                <b><%= data.forecast.data[i].temperatureHigh %>°</b> <span><%= data.forecast.data[i].temperatureLow %>°</span>
                             </li>
                             <% } %>
                         </ul>

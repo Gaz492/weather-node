@@ -3,10 +3,11 @@
  */
 'use strict';
 const request = require('request');
+const config = require('../config');
 
 module.exports = {
     getForecast: function(callback){
-        let url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text=%22llanrwst,%20uk%22)and%20u%20=%20%27c%27&format=json&env=store://datatables.org/alltableswithkeys";
+        let url = `https://api.darksky.net/forecast/${config.dark_sky.apikey}/${config.dark_sky.latitude},${config.dark_sky.longitude}?units=${config.dark_sky.units}&exclude=${config.dark_sky.exclude}`;
         request({
             url: url,
             json: true

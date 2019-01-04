@@ -11,9 +11,15 @@ const config = {
         password: "1234",
         database: "weather"
     },
-
     weatherApp: {
         macAddress: "mac_address"
+    },
+    dark_sky:{
+        apikey: "apikey",
+        longitude: "",
+        latitude: "",
+        units: "uk2",
+        exclude: "minutely,hourly" // Comma separated
     }
 };
 module.exports = config;

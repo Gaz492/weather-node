@@ -9,7 +9,7 @@ const util = require('../models/util');
 /* GET home page. */
 router.get('/', function (req, res, next) {
     util.getForecast(function (response) {
-        let yahooChannel = response.query.results.channel;
+        let dark_sky = response;
         getWeather.getWeatherData(function(weatherData){
             res.render('index', {
                 data: {
@@ -18,8 +18,8 @@ router.get('/', function (req, res, next) {
                     currentHumid: weatherData.tempHumidData.dataValues.humid,
                     currentForecast: weatherData.pressureForecastData.dataValues.forecast,
                     currentPressure: weatherData.pressureForecastData.dataValues.baro,
-                    forecast: yahooChannel.item.forecast,
-                    wind: yahooChannel.wind.speed,
+                    forecast: dark_sky.daily,
+                    wind: dark_sky.currently.windSpeed,
                     minTemp: weatherData.minMaxData.tempMin,
                     maxTemp: weatherData.minMaxData.tempMax,
                     minHumid: weatherData.minMaxData.humidMin,
