@@ -16,8 +16,8 @@ const config = {
     },
     dark_sky:{
         apikey: "apikey",
-        longitude: "",
         latitude: "",
+        longitude: "",
         units: "uk2",
         exclude: "minutely,hourly" // Comma separated
     }

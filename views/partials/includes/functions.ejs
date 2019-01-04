@@ -22,7 +22,6 @@ getCurrentForecast = function (status) {
 
 getDay = function (timestamp){
     var date = new Date(timestamp*1000);
-    console.log(date.getDate())
     var day = date.getDay();
     switch (day){
         case 0:
