@@ -34,3 +34,4 @@ npm-debug.log
 \.DS_Store
 
 config\.js
+public/css/*.css
